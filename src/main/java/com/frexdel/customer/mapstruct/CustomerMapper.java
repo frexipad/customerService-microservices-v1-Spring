@@ -1,15 +1,34 @@
 package com.frexdel.customer.mapstruct;
 
-import com.frexdel.customer.dto.CustomerRequestDTO;
-import com.frexdel.customer.dto.CustomerResponseDTO;
+import com.frexdel.customer.dto.CustomerDto;
 import com.frexdel.customer.entity.Customer;
 import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
+
+import java.util.List;
+import java.util.UUID;
 
 @Mapper(componentModel = "spring")
-public interface CustomerMapper {
+public interface CustomerMapper extends IEntityMapper<CustomerDto,Customer> {
 
+    @Override
+    CustomerDto toDto(Customer customer);
 
-    CustomerRequestDTO customerToRequestDTO(Customer customer);
-    Customer requestDTOtoCustomer (CustomerResponseDTO customerResponseDTO);
+    @Override
+    List<CustomerDto> toDto(List<Customer> customers);
+
+    @Override
+    Customer toEntity(CustomerDto customerDto);
+
+    @Override
+    List<Customer> toEntity(List<CustomerDto> customerDtos);
+
+    @Override
+    default Customer fromId(UUID id){
+       if (id==null){
+           return null;
+       }
+       Customer customer=new Customer();
+       customer.setId(id);
+       return customer;
+    };
 }

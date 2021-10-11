@@ -25,12 +25,12 @@ public class ShouldMapCarToDto {
         Customer customer = new Customer( null,"1234","1234","1234");
 
         //when
-        CustomerRequestDTO customerRequestDTO = customerMapper.customerToRequestDTO( customer );
+        CustomerDto customerDto = customerMapper.toDto( customer );
 
         //then
         assertThat( customer ).isNotNull();
-        assertThat( customerRequestDTO.getEmail() ).isEqualTo( "1234" );
-        assertThat( customerRequestDTO.getName() ).isEqualTo( "1234" );
+        assertThat( customerDto.getEmail() ).isEqualTo( "1234" );
+        assertThat( customerDto.getName() ).isEqualTo( "1234" );
         log.info("Test Seccess ");
 
     }
@@ -40,12 +40,12 @@ public class ShouldMapCarToDto {
         Customer customer = new Customer( null,"1234","1234","1234");
 
         //when
-        CustomerRequestDTO customerRequestDTO = customerMapper.customerToRequestDTO( customer );
+        CustomerDto customerDto = customerMapper.toDto( customer );
 
         //then
         assertThat( customer ).isNotNull();
-        assertThat( customerRequestDTO.getEmail() ).isEqualTo( "12344" );
-        assertThat( customerRequestDTO.getName() ).isEqualTo( "12344" );
+        assertThat( customerDto.getEmail() ).isNotEqualTo( "12344" );
+        assertThat( customerDto.getName() ).isNotEqualTo( "12344" );
         log.info("Test Seccess ");
 
     }

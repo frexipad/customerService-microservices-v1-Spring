@@ -2,15 +2,11 @@ package com.frexdel.customer.dto;
 
 import lombok.Data;
 
-import java.io.Serializable;
 import java.util.UUID;
-
 @Data
-public class CustomerResponseDTO implements Serializable {
+public class CustomerDto {
     private UUID id;
     private String name;
     private String email;
     private String password;
-
 }
-
